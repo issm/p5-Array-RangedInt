@@ -266,7 +266,7 @@ __END__
 
 =head1 NAME
 
-Array::RangedInt - The great new Array::RangedInt!
+Array::RangedInt - Array of range-described int
 
 =head1 VERSION
 
@@ -274,19 +274,34 @@ Version 0.01
 
 =head1 SYNOPSIS
 
-Quick summary of what the module does.
+  use Array::RangedInt;
 
-Perhaps a little code snippet.
+  my $ari = Array::RangedInt->new( 1, 2, 3, '5-10', '11-15', '25-30' );
+  # or
+  my $ari = Array::RangedInt->parse( '1, 2, 3, 5-10, 11-15, 25-30' );
 
-    use Array::RangedInt;
+  print $ari->size();           # 25
 
-    my $foo = Array::RangedInt->new();
-    ...
+  print $ari->stringify();      # 1-3,5-15,25-35
+  print $ari->stringify('..');  # 1..3,5..15,25..35
 
-=head1 EXPORT
+  my @arr = $ari->dump();       # (1..3, 5..15, 25..35)
 
-A list of functions that can be exported.  You can delete this section
-if you don't export anything, such as for a purely object-oriented module.
+  $ari->add(4, '21-24');
+  print $ari->stringify();  # 1-15,21-35
+
+  $ari->remove(3, 8, '26-30');
+  print $ari->stringify();  # 1-2,4-7,9-10,21-25,31-35
+
+  print $ari->shift();      # 1
+  print $ari->stringify();  # 2,4-7,9-10,21-25,31-35
+
+  print $ari->pop();        # 35
+  print $ari->stringify();  # 2,4-7,9-10,21-25,31-34
+
+=head1 DESCRIPTION
+
+Array::RangedInt is
 
 =head1 METHODS
 
