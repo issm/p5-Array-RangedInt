@@ -22,7 +22,7 @@ my $builder = Module::Build->subclass(
     license             => 'perl',
     dist_author         => q{IWATA, Susumu <issmxx@gmail.com>},
     dist_version_from   => 'lib/Array/RangedInt.pm',
-    release_status      => 'stable',
+    release_status      => 'testing',
     configure_requires => {
         'Module::Build' => 0,
     },

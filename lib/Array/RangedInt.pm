@@ -3,7 +3,7 @@ use 5.008;
 use strict;
 use warnings FATAL => 'all';
 
-our $VERSION = '0.01';
+our $VERSION = '0.00_01';
 
 my $_re = qr/([+-]?\d+)(?:[-:]([+-]?\d+))?/;
 my $re = qr/^${_re}$/;
@@ -267,10 +267,6 @@ __END__
 =head1 NAME
 
 Array::RangedInt - Array of range-described int
-
-=head1 VERSION
-
-Version 0.01
 
 =head1 SYNOPSIS
 
