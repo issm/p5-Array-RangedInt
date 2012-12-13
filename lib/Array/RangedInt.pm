@@ -149,8 +149,9 @@ sub update {
             my ($v11, $v12) = $v1 =~ $re;
             ### $v0: single, $v1: single
             if ( ! defined $v02  &&  ! defined $v12 ) {
-                if ( $v01 + 1 == $v11 ) { CORE::push @items_up, "$v0\-$v11" }
-                else                    { CORE::push @items_up, $v0, $v1 }
+                if ( $v01 == $v11 )        { CORE::push @items_up, $v0 }
+                elsif ( $v01 + 1 == $v11 ) { CORE::push @items_up, "$v0\-$v11" }
+                else                       { CORE::push @items_up, $v0, $v1 }
             }
             ### $v0: single, $v1: ranged
             elsif ( ! defined $v02  &&  defined $v12 ) {

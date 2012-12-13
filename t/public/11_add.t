@@ -11,6 +11,25 @@ subtest 'single' => sub {
 
     $a->add(2, 3);
     is_deeply $a->{_items}, ['1-3'];
+
+    subtest 'continuous calling' => sub {
+        my $a;
+        $a = new();
+        $a->add(1)  for 1..5;
+        is_deeply $a->{_items}, [1];
+
+        $a = new(1);
+        $a->add(2)  for 1..5;
+        is_deeply $a->{_items}, ['1-2'];
+
+        $a = new(1);
+        $a->add(3)  for 1..5;
+        is_deeply $a->{_items}, [1, 3];
+
+        $a = new('1-2');
+        $a->add(3)  for 1..5;
+        is_deeply $a->{_items}, ['1-3'];
+    };
 };
 
 subtest 'ranged' => sub {
@@ -27,6 +46,18 @@ subtest 'ranged' => sub {
 
     $a->add('6-10');
     is_deeply $a->{_items}, ['-5--3', '1-3', '5-10'];
+
+    subtest 'continuous calling' => sub {
+        my $a = new();
+        $a->add('1-3')  for 1..5;
+        is_deeply $a->{_items}, ['1-3'];
+
+        $a->add('3-5')  for 1..5;
+        is_deeply $a->{_items}, ['1-5'];
+
+        $a->add('8-10')  for 1..5;
+        is_deeply $a->{_items}, ['1-5', '8-10'];
+    };
 };
 
 subtest 'mixed' => sub {
