@@ -23,7 +23,7 @@ sub new {
 
 sub parse {
     my ($class, $text, $opts) = @_;
-    my $re_parse = qr/^(?:${_re},)*${_re}$/;
+    my $re_parse = qr/(?:^(?:${_re},)*${_re}$|^$)/;
     $text =~ s/ +//g;
     $text =~ s/\+//g;
     if ( $text !~ $re_parse ) { die 'invalid format' }

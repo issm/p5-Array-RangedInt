@@ -18,6 +18,10 @@ subtest 'ng' => sub {
 subtest 'ok' => sub {
     my $a;
 
+    $a = parse('');
+    isa_ok $a, 'Array::RangedInt', q{parse('')};
+    is_deeply $a->{_items}, [];
+
     $a = parse('12345');
     isa_ok $a, 'Array::RangedInt', q{parse('12345')};
     is_deeply $a->{_items}, [12345];
