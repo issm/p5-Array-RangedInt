@@ -236,6 +236,28 @@ sub dump {
     return wantarray ? eval $self->stringify('..') : [eval $self->stringify('..')];
 }
 
+sub _fix {
+    my ($self, @args) = @_;
+    my @ret;
+ FOR_ARGS:
+    while ( defined (my $v = CORE::shift @args) ) {
+        my ($a, $b) = $v =~ $re;
+        ### single
+        if ( ! defined $b ) {
+            CORE::push @ret, int($a);
+            next FOR_ARGS;
+        }
+        ### ranged
+        else {
+            ($a, $b) = map int, ($a, $b);
+            if ( $a > $b )     { CORE::push @ret, "${b}-${a}" }
+            elsif ( $a == $b ) { CORE::push @ret, $a }
+            else               { CORE::push @ret, $v }
+        }
+    }
+    return wantarray ? @ret : $ret[0];
+}
+
 sub _push {
     my ($self, $a, $v) = @_;
 }
