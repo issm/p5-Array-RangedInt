@@ -1,5 +1,8 @@
 Revision history for Array-RangedInt
 
-0.00_01 Date/time
+0.00_02 2013-04-24 15:32
+        - Array::RangedInt#parse: allow "empty" string
+
+0.00_01 2012-12-13 13:27
         - original version.
 

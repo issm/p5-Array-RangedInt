@@ -3,7 +3,7 @@ use 5.008;
 use strict;
 use warnings FATAL => 'all';
 
-our $VERSION = '0.00_01';
+our $VERSION = '0.00_02';
 
 my $_re = qr/([+-]?\d+)(?:[-:]([+-]?\d+))?/;
 my $re = qr/^${_re}$/;
