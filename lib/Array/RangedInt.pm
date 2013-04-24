@@ -98,7 +98,7 @@ sub remove {
                 }
             }
         }
-        @items_up = @items_tmp;
+        @items_up = $self->_fix(@items_tmp);
         @items_tmp = ();
     }
     $self->{_items} = \@items_up;

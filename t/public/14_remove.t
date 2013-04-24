@@ -77,4 +77,43 @@ subtest 'ranged' => sub {
     };
 };
 
+subtest 'GH #2' => sub {
+    subtest 'case 1' => sub {
+        my $a = new(1..100);
+
+        $a->remove(100);
+        is_deeply $a->stringify(), '1-99';
+
+        $a->remove(98, 99);
+        is_deeply $a->stringify(), '1-97';
+    };
+
+    subtest 'case 2' => sub {
+        my $a = new(1..100);
+
+        $a->remove(50);
+        is_deeply $a->stringify(), '1-49,51-100';
+
+        $a->remove(48,49,99,100);
+        is_deeply $a->stringify(), '1-47,51-98';
+    };
+
+    subtest 'case 3' => sub {
+        my $a = new(1..100);
+
+        $a->remove(51..150);
+        is_deeply $a->stringify(), '1-50';
+    };
+
+    subtest 'case 4' => sub {
+        my $a = new(1..100);
+
+        $a->remove('51-100');
+        is_deeply $a->stringify(), '1-50';
+
+        $a->remove('41-60');
+        is_deeply $a->stringify(), '1-40';
+    };
+};
+
 done_testing;
