@@ -33,7 +33,8 @@ sub parse {
 }
 
 sub add {
-    my ($self, @args) = @_;
+    my $self = shift;
+    my @args = _normalize(@_);
     my $items = $self->{_items};
     while ( defined( my $v = CORE::shift @args ) ) {
         push @$items, $v;
