@@ -181,7 +181,8 @@ sub update {
 }
 
 sub includes {
-    my ($self, @args) = @_;
+    my $self = CORE::shift;
+    my @args = _normalize(@_);
     my @ret;
     my $items = $self->{_items};
  FOR_ARGS:
