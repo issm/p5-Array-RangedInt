@@ -16,4 +16,8 @@ is $a->pop(), 1;
 is $a->pop(), undef;
 is $a->pop(), undef;
 
+$a = new('010-020');
+is $a->pop(), 20;
+is_deeply $a->{_items}, ['10-19'];
+
 done_testing;

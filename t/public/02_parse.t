@@ -57,5 +57,19 @@ subtest 'ok' => sub {
 
 };
 
+subtest 'items which start with "0"' => sub {
+    $a = parse('0012345');
+    isa_ok $a, 'Array::RangedInt', q{parse('0012345')};
+    is_deeply $a->{_items}, [12345];
+
+    $a = parse('01-03,04-06,08-010');
+    isa_ok $a, 'Array::RangedInt', q{parse('01-03,04-06,08-010')};
+    is_deeply $a->{_items}, ['1-6', '8-10'];
+
+    $a = parse('-005--03,-2:000,01-003');
+    isa_ok $a, 'Array::RangedInt', q{parse('-005--03,-2:000,01-003')};
+    is_deeply $a->{_items}, ['-5-3'];
+};
+
 
 done_testing;

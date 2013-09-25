@@ -16,4 +16,8 @@ is $a->shift(), 12;
 is $a->shift(), undef;
 is $a->shift(), undef;
 
+$a = new('010-020');
+is $a->shift(), 10;
+is_deeply $a->{_items}, ['11-20'];
+
 done_testing;
