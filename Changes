@@ -1,5 +1,8 @@
 Revision history for Array-RangedInt
 
+0.00_04 2013-09-25 23:59
+        - normalizes ranged-int string, as "010-020" into "10-20"
+
 0.00_03 2013-04-25 00:06
         - fix GH #2
 
