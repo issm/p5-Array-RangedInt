@@ -16,6 +16,7 @@ sub new {
     }
     my $self = bless +{
         _items => \@args,
+        _items => [_normalize(@args)],
     }, $class;
     $self->update();
     return $self;
@@ -234,6 +235,15 @@ sub stringify {
 sub dump {
     my ($self) = @_;
     return wantarray ? eval $self->stringify('..') : [eval $self->stringify('..')];
+}
+
+sub _normalize {
+    CORE::shift  if ref($_[0]) eq __PACKAGE__;
+    my @args = @_;
+    return map {
+        s/\b0+([1-9]+)\b?/$1/g;
+        $_;
+    } @args;
 }
 
 sub _fix {
